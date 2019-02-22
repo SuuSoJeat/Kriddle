@@ -1,6 +1,8 @@
-import entities.Riddle
-import interactors.CreateANewRiddle
-import interactors.CreateANewRiddle.Params
+package features
+
+import FakeRiddleRepositoryImpl
+import core.entities.Riddle
+import features.CreateANewRiddle.Params
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.`should be equal to`

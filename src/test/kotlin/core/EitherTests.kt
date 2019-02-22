@@ -16,9 +16,9 @@ package core
  * limitations under the License.
  */
 
-import functional.Either
-import functional.Either.Left
-import functional.Either.Right
+import core.functional.Either
+import core.functional.Either.Left
+import core.functional.Either.Right
 import org.amshove.kluent.shouldBe
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldBeInstanceOf

@@ -1,7 +1,7 @@
-package repositories
+package core.repositories
 
-import entities.Riddle
-import functional.Either
+import core.entities.Riddle
+import core.functional.Either
 
 interface RiddleRepository {
     suspend fun save(riddle: Riddle): Either<Exception, Unit>

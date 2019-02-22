@@ -1,8 +1,8 @@
-import entities.Riddle
-import functional.Either
+import core.entities.Riddle
+import core.functional.Either
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import repositories.RiddleRepository
+import core.repositories.RiddleRepository
 
 class FakeRiddleRepositoryImpl : RiddleRepository {
     private val inMemoryDatabase = HashMap<String, Riddle>()

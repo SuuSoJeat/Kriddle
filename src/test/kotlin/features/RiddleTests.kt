@@ -1,4 +1,7 @@
-import entities.Riddle
+package features
+
+import FakeRiddleRepositoryImpl
+import core.entities.Riddle
 import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldBeEmpty
 import org.amshove.kluent.shouldContain

@@ -1,8 +1,8 @@
 package core
 
-import functional.Either
-import functional.Either.Right
-import interactors.UseCase
+import core.functional.Either
+import core.functional.Either.Right
+import core.interactors.UseCase
 import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldEqual
 import org.junit.jupiter.api.Test
