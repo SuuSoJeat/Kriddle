@@ -20,7 +20,7 @@ class CreateANewRiddleTests {
             val riddle = Riddle(UUID.randomUUID().toString(), "question1", "answer1")
             val riddleRepository = FakeRiddleRepositoryImpl()
             val createANewRiddle = CreateANewRiddle(riddleRepository)
-            createANewRiddle(Params(riddle))
+            createANewRiddle(Params(riddle)) { it.either({}, {}) }
             val allRiddles = riddleRepository.getAllRiddles()
             allRiddles.size `should be equal to` 1
             allRiddles shouldContain riddle
