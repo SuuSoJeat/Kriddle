@@ -1,35 +1,38 @@
 import core.entities.Riddle
-import core.functional.Either
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import core.repositories.RiddleRepository
+import java.util.*
 
 class FakeRiddleRepositoryImpl : RiddleRepository {
     private val inMemoryDatabase = HashMap<String, Riddle>()
-    override suspend fun save(riddle: Riddle): Either<Exception, Unit> {
-        return try {
-            withContext(Dispatchers.IO) {
-                inMemoryDatabase[riddle.id] = riddle
-                Either.Right(Unit)
-            }
-        } catch (e: Exception) {
-            Either.Left(e)
+
+    init {
+        for (i in 0..4) {
+            val riddle = Riddle(UUID.randomUUID().toString(), "question$i", "answer$i")
+            inMemoryDatabase[riddle.id] = riddle
         }
     }
 
-    override fun delete(riddle: Riddle) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override suspend fun save(riddle: Riddle) {
+        inMemoryDatabase[riddle.id] = riddle
     }
 
-    override fun edit(riddle: Riddle) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override suspend fun delete(riddle: Riddle) {
+        inMemoryDatabase.remove(riddle.id)
     }
 
-    override fun getById(id: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override suspend fun deleteAll() {
+        inMemoryDatabase.clear()
     }
 
-    override suspend fun getAllRiddles(): List<Riddle> {
+    override suspend fun update(riddle: Riddle) {
+        inMemoryDatabase[riddle.id] = riddle
+    }
+
+    override suspend fun findById(id: String): Riddle {
+        return inMemoryDatabase[id] ?: throw Exception("Riddle by id $id is not exist.")
+    }
+
+    override suspend fun riddles(): List<Riddle> {
         return inMemoryDatabase.values.toList()
     }
 }

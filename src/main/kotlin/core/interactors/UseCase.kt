@@ -1,11 +1,9 @@
 package core.interactors
 
-import core.functional.Either
-
 abstract class UseCase<out Type, in Params> where Type : Any {
-    abstract suspend fun run(params: Params): Either<Exception, Type>
+    abstract suspend fun run(params: Params): Type
 
-    suspend operator fun invoke(params: Params, onResult: (Either<Exception, Type>) -> Unit = {}) {
+    suspend operator fun invoke(params: Params, onResult: (Type) -> Unit = {}) {
         onResult(run(params))
     }
 }
