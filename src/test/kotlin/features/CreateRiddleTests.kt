@@ -2,7 +2,7 @@ package features
 
 import FakeRiddleRepositoryImpl
 import core.entities.Riddle
-import features.CreateANewRiddle.Params
+import features.CreateRiddle.Params
 import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.runBlocking
 import org.amshove.kluent.shouldContain
@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 import java.util.*
 import java.util.concurrent.Executors
 
-class CreateANewRiddleTests {
+class CreateRiddleTests {
     @Test
     fun nothing() {
     }
@@ -20,7 +20,7 @@ class CreateANewRiddleTests {
         runBlocking<Unit>(Executors.newSingleThreadExecutor().asCoroutineDispatcher()) {
             val riddle = Riddle(UUID.randomUUID().toString(), "question1", "answer1")
             val riddleRepository = FakeRiddleRepositoryImpl()
-            val createANewRiddle = CreateANewRiddle(riddleRepository)
+            val createANewRiddle = CreateRiddle(riddleRepository)
             createANewRiddle(Params(riddle))
             val allRiddles = riddleRepository.riddles()
             allRiddles shouldContain riddle
@@ -31,7 +31,7 @@ class CreateANewRiddleTests {
         runBlocking<Unit>(Executors.newSingleThreadExecutor().asCoroutineDispatcher()) {
             val riddle = Riddle(UUID.randomUUID().toString(), "question1", "answer1")
             val riddleRepository = FakeRiddleRepositoryImpl()
-            val createANewRiddle = CreateANewRiddle(riddleRepository)
+            val createANewRiddle = CreateRiddle(riddleRepository)
             createANewRiddle(Params(riddle)) { }
         }
 }
